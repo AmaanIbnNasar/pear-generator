@@ -125,6 +125,8 @@ def processTeam(team):
 
     # plotGraph(peopleGraph)
 
+    print()
+
     save_answers = inquirer.prompt([
         inquirer.Confirm(
             'save',
