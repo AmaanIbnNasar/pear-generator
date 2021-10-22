@@ -7,3 +7,5 @@ If you'd like to add a new team:
 * Add a people.json file and a previous_pears.JSON file
 
 THE FILE MUST BE PEARS NOT PAIRS
+
+Or you can run `python generateNewTeam.py`
