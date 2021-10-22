@@ -41,8 +41,15 @@ def main():
     previousPairWeeks = getPreviousPairs()
     peopleGraph = convertPeopleToGraph(people)
     convertPreviousPairsToGraphWeights(peopleGraph, previousPairWeeks)
+    pairings = nx.max_weight_matching(peopleGraph)
+    unpaired = set(people)
+    for (p1, p2) in pairings:
+        unpaired.remove(p1)
+        unpaired.remove(p2)
+        print(f"🍐🍐🍐🍐:pear: {p1} :pear: {p2} :pear:")
+    for person in unpaired:
+        print(f":apple: {person} :apple:")
     plotGraph(peopleGraph)
-    print(nx.max_weight_matching(peopleGraph))
 
 
 
