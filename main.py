@@ -64,12 +64,20 @@ def main():
         inquirer.List(
             'team',
             message="What team do you want to pear?",
-            choices=os.listdir('./__pairfiles__')
+            choices=os.listdir('./__pairfiles__') + ["Get all teams"]
         )
     ])
+    if team_answers["team"] == "Get all teams":
+        for team in os.listdir("./__pairfiles__"):
+            print(f"Processing team: {team}")
+            processTeam(team)
+    else:
+        processTeam(team_answers["team"])
 
-    people = getPeople(team_answers['team'])
-    previousPairWeeks = getPreviousPairs(team_answers['team'])
+
+def processTeam(team):
+    people = getPeople(team)
+    previousPairWeeks = getPreviousPairs(team)
 
     wfh_answers = inquirer.prompt([
         inquirer.Checkbox(
@@ -125,7 +133,7 @@ def main():
         )
     ])
     if save_answers['save']:
-        savePairings(team_answers['team'], pairings, unpaired)
+        savePairings(team, pairings, unpaired)
 
 
 if __name__=="__main__":
