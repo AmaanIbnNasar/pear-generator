@@ -9,11 +9,11 @@ def convertPeopleToGraph(people):
     return peopleGraph
 
 
-def convertPreviousPairsToGraphWeights(peopleGraph, previousPairWeeks):
+def convertPreviousPairsToGraphWeights(peopleGraph, previousPairSets):
     unmatchedPeople = []  # can include repeats
     # First apply the penalties for being matched previously
-    for i, previousPairWeek in enumerate(previousPairWeeks):
-        for p1, p2 in previousPairWeek.items():
+    for i, previousPairSet in enumerate(previousPairSets):
+        for p1, p2 in previousPairSet.items():
             if p1 in peopleGraph.nodes and p2 == 0:
                 unmatchedPeople.append(p1)
                 continue

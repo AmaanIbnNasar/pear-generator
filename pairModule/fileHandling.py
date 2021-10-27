@@ -14,14 +14,14 @@ def getPeople(team):
 
 def getPreviousPairs(team):
     with open(f"__pairfiles__/{team}/previous_pears.json") as f:
-        previousPairWeeks = json.load(f)
-    return previousPairWeeks
+        previousPairSets = json.load(f)
+    return previousPairSets
 
 
 def savePairings(team, pairings, unpaired):
     with open(f"__pairfiles__/{team}/previous_pears.json") as f:
-        previousPairWeeks = json.load(f)
-    previousPairWeeks.insert(0, {
+        previousPairSets = json.load(f)
+    previousPairSets.insert(0, {
         **{
             p1: p2
             for p1, p2 in pairings
@@ -32,4 +32,4 @@ def savePairings(team, pairings, unpaired):
         }
     })
     with open(f"__pairfiles__/{team}/previous_pears.json", 'w') as f:
-        json.dump(previousPairWeeks, f, indent=2)
+        json.dump(previousPairSets, f, indent=2)

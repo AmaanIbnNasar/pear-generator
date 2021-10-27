@@ -21,18 +21,18 @@ class Test(TestCase):
 
     def test_correctly_discounts_one_pair(self):
         graph = setupGraph()
-        convertPreviousPairsToGraphWeights(graph, [{1:2}])
+        convertPreviousPairsToGraphWeights(graph, [{1: 2}])
         self.assertEqual([(1, 2, 0), (1, 3, 100), (1, 4, 100), (2, 3, 100), (2, 4, 100), (3, 4, 100)],
                          list(graph.edges.data("weight")))
 
-    def test_correctly_discounts_one_pair_over_multiple_weeks(self):
+    def test_correctly_discounts_one_pair_over_multiple_sets(self):
         graph = setupGraph()
-        convertPreviousPairsToGraphWeights(graph, [{1:2},{2:3}])
+        convertPreviousPairsToGraphWeights(graph, [{1: 2}, {2: 3}])
         self.assertEqual([(1, 2, 0), (1, 3, 100), (1, 4, 100), (2, 3, 25), (2, 4, 100), (3, 4, 100)],
                          list(graph.edges.data("weight")))
 
     def test_correctly_adds_apple_bonus(self):
         graph = setupGraph()
-        convertPreviousPairsToGraphWeights(graph, [{1:2},{2:0}])
+        convertPreviousPairsToGraphWeights(graph, [{1: 2}, {2: 0}])
         self.assertEqual([(1, 2, 15), (1, 3, 100), (1, 4, 100), (2, 3, 115), (2, 4, 115), (3, 4, 100)],
                          list(graph.edges.data("weight")))

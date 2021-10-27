@@ -56,9 +56,9 @@ This weight is calculated according to the following process:
 
 1. All weights start at 100
 
-2. The `previousPairings` are iterated over, and if person `p1` and `p2` have been in a pair on `previousPairing i` (where `i=0` is the most recent previous pairing and `i=1` is the pairing the week before, etc...) then the weight of the connection between the two people is multiplied by `0.5 - 0.5**(i+1)`
+2. The `previousPairings` are iterated over, and if person `p1` and `p2` have been in a pair on `previousPairing i` (where `i=0` is the most recent previous pairing and `i=1` is the pairing before, etc...) then the weight of the connection between the two people is multiplied by `0.5 - 0.5**(i+1)`
 
-   - This means that if `p1` and `p2` were paired the previous week then the `weight` goes to 0 for that connection
+   - This means that if `p1` and `p2` were paired the previous time then the `weight` goes to 0 for that connection
 
    - The sequence `0.5 - 0.5**(i+1)` has values `0, 0.25, 0.375, 0.4375, ...`. In this way a previous pairing becomes less and less penalized as time goes on. As `i` goes to infinity this sequence goes to `0.5`, people who have never been paired
 
