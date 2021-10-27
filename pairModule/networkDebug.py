@@ -12,3 +12,8 @@ def plotGraph(graph):
         graph, pos, width=[edge[2]/100 for edge in graph.edges.data("weight")])
     nx.draw_networkx_labels(graph, pos)
     plt.show()
+
+
+def getNeighborWeightsOfPerson(person, peopleGraph):
+    for neigh in peopleGraph.neighbors(person):
+        print(neigh, peopleGraph.edges[person, neigh]['weight'])
