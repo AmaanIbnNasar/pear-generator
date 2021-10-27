@@ -3,7 +3,7 @@ from unittest import TestCase
 
 import networkx as nx
 
-from main import convertPreviousPairsToGraphWeights
+from pairModule.peopleGraph import convertPreviousPairsToGraphWeights
 
 
 def setupGraph():

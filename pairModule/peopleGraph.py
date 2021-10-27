@@ -2,6 +2,13 @@ import networkx as nx
 import itertools
 
 
+def doFullPairing(people, previousPairSets, peopleLocation):
+    peopleGraph = convertPeopleToGraph(people)
+    convertPreviousPairsToGraphWeights(peopleGraph, previousPairSets)
+    weightHomeWorkers(peopleGraph, people, peopleLocation)
+    return nx.max_weight_matching(peopleGraph, maxcardinality=True)
+
+
 def convertPeopleToGraph(people):
     peopleGraph = nx.Graph()
     peopleEdges = itertools.combinations(people, 2)

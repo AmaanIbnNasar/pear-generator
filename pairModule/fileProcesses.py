@@ -2,7 +2,7 @@ import os
 import inquirer
 
 
-def main():
+def generateTeam():
     team_answers = inquirer.prompt([
         inquirer.Text(
             'team',
@@ -16,6 +16,6 @@ def main():
     with open(f"./__pairfiles__/{team_answers['team']}/previous_pears.JSON", "w") as f:
         f.write("[]")
 
-
-if __name__ == "__main__":
-    main()
+    print('\nYour new team has been prepared!\n\n'
+          f'You will need to set up the /__pairfiles/{team_answers["team"]}/people.txt file '
+          "with the list of people on the team, refer to README.md on how to do this.")

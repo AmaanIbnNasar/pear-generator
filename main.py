@@ -1,90 +1,35 @@
-import networkx as nx
-import json
-import os
-import itertools
 import inquirer
 
-from pairModule.teamNetwork import convertPeopleToGraph, convertPreviousPairsToGraphWeights, weightHomeWorkers
-from pairModule.fileHandling import getPeople, getPreviousPairs
+from pairModule.fileProcesses import generateTeam
+from pairModule.pairingProcesses import pairAllTeams, pairTeamAndAskWhich
 
 
 def main():
-    team_answers = inquirer.prompt([
+    main_answers = inquirer.prompt([
         inquirer.List(
-            'team',
-            message="What team do you want to pear?",
-            choices=os.listdir('./__pairfiles__') + ["Get all teams"]
+            'main',
+            message="Which of the following would you like to do?",
+            choices=[
+                ('Pair a single team', 'pair_team'),
+                ('Pair all teams in __pairfiles__', 'pair_all_teams'),
+                ('Print the most recent pairing of all teams in a big combined message', 'big_message'),
+                ('Generate a new team', 'generate_team'),
+                ('Archive a current team', 'archive_team')
+            ]
         )
     ])
-    if team_answers["team"] == "Get all teams":
-        for team in os.listdir("./__pairfiles__"):
-            print(f"Processing team: {team}")
-            processTeam(team)
-    else:
-        processTeam(team_answers["team"])
-
-
-def processTeam(team):
-    people = getPeople(team)
-    previousPairWeeks = getPreviousPairs(team)
-
-    wfh_answers = inquirer.prompt([
-        inquirer.Checkbox(
-            'homeworkers',
-            message='Who is working from home?',
-            choices=people
-        )
-    ])
-    peopleLocation = {
-        person: 'home' if person in wfh_answers['homeworkers'] else 'office'
-        for person in people
-    }
-
-    exclusion_answers = inquirer.prompt([
-        inquirer.Checkbox(
-            'excluded',
-            message='Who do you want to exclude from pairing?',
-            choices=people
-        )
-    ])
-    people = [
-        person
-        for person in people
-        if person not in exclusion_answers['excluded']
-    ]
-
-    peopleGraph = convertPeopleToGraph(people)
-    convertPreviousPairsToGraphWeights(peopleGraph, previousPairWeeks)
-    weightHomeWorkers(peopleGraph, people, peopleLocation)
-
-    # for neigh in peopleGraph.neighbors('Amaan Ibn-Nasar'):
-    #     print(neigh, peopleGraph.edges['Amaan Ibn-Nasar', neigh]['weight'])
-
-    pairings = nx.max_weight_matching(peopleGraph, maxcardinality=True)
-
-    unpaired = set(people)
-    for (p1, p2) in pairings:
-        unpaired.remove(p1)
-        unpaired.remove(p2)
-        print(f":pear: {p1} :pear: {p2} :pear:")
-    for person in unpaired:
-        print(f":apple: {person} :apple:")
-    for person in exclusion_answers['excluded']:
-        print(f":apple: {person} :apple:")
-
-    # plotGraph(peopleGraph)
-
     print()
 
-    save_answers = inquirer.prompt([
-        inquirer.Confirm(
-            'save',
-            message='Would you like to save this pairing in previous pairs?',
-            default=True
-        )
-    ])
-    if save_answers['save']:
-        savePairings(team, pairings, unpaired)
+    if main_answers['main'] == 'pair_team':
+        pairTeamAndAskWhich()
+    elif main_answers['main'] == 'pair_all_teams':
+        pairAllTeams()
+    elif main_answers['main'] == 'big_message':
+        print('Not yet implemented')
+    elif main_answers['main'] == 'generate_team':
+        generateTeam()
+    elif main_answers['main'] == 'archive_team':
+        print('Not yet implemented')
 
 
 if __name__ == "__main__":
