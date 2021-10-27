@@ -34,5 +34,5 @@ class Test(TestCase):
     def test_correctly_adds_apple_bonus(self):
         graph = setupGraph()
         convertPreviousPairsToGraphWeights(graph, [{1:2},{2:0}])
-        self.assertEqual([(1, 2, 5), (1, 3, 100), (1, 4, 100), (2, 3, 105), (2, 4, 105), (3, 4, 100)],
+        self.assertEqual([(1, 2, 15), (1, 3, 100), (1, 4, 100), (2, 3, 115), (2, 4, 115), (3, 4, 100)],
                          list(graph.edges.data("weight")))
