@@ -1,4 +1,4 @@
-import networkx as nx, json, os, itertools, matplotlib.pyplot as plt
+import networkx as nx, json, os, itertools
 import inquirer
 
 def getPeople(team):
@@ -53,6 +53,7 @@ def weightHomeWorkers(peopleGraph, people, peopleLocation):
 
 
 def plotGraph(graph):
+    import matplotlib.pyplot as plt
     pos = nx.drawing.spring_layout(graph)
     nx.draw_networkx_nodes(graph, pos)
     nx.draw_networkx_edges(graph, pos, width=[edge[2]/100 for edge in graph.edges.data("weight")])
