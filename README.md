@@ -4,16 +4,26 @@
 
 To install the dependencies to the project please run `pip install -r requirements.txt`
 
-Run `python main.py` to start
+Run `python3 main.py` to start
 
-If you'd like to add a new team:
+## Adding a team
 
-- Add a directory of the team name into **pair**files
-- Add a people.json file and a previous_pears.JSON file
+If you'd like to add a new team please run `python3 generateNewTeam.py`.
+It will ask you for a team name and then:
 
-THE FILE MUST BE PEARS NOT PAIRS
+- Add a directory of the team name into `__pairfiles__`
+- Add a people.txt file and a previous_pears.json file
 
-Or you can run `python generateNewTeam.py`
+You must add a list of people into the new file, written as their names separated by new lines, for example:
+
+```
+Fakey McFakeface
+Foo Bar
+John Student
+```
+
+The names on each line will constitute a unique ID for that person, and will be what is printed to the console when the pairing is printed.
+Therefore, make sure that the names are unique within the team and make sure that the names are written in a human readable form.
 
 ## How the algorithm works
 

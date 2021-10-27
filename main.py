@@ -2,17 +2,22 @@ import networkx as nx, json, os, itertools
 import inquirer
 
 def getPeople(team):
-    with open(f"__pairfiles__/{team}/people.json") as f:
-        people = json.load(f)
-    return people["people"]
+    with open(f"__pairfiles__/{team}/people.txt") as f:
+        people = f.read().strip().split("\n")
+        people = [
+            person.strip()  # Strip leading/trailing spaces in a person's name
+            for person in people
+            if person.strip()  # Drop names that are accidental newlines
+        ]
+    return people
 
 def getPreviousPairs(team):
-    with open(f"__pairfiles__/{team}/previous_pears.JSON") as f:
+    with open(f"__pairfiles__/{team}/previous_pears.json") as f:
         previousPairWeeks = json.load(f)
     return previousPairWeeks
 
 def savePairings(team, pairings, unpaired):
-    with open(f"__pairfiles__/{team}/previous_pears.JSON") as f:
+    with open(f"__pairfiles__/{team}/previous_pears.json") as f:
         previousPairWeeks = json.load(f)
     previousPairWeeks.insert(0, {
         **{
@@ -24,8 +29,8 @@ def savePairings(team, pairings, unpaired):
             for person in unpaired
         }
     })
-    with open(f"__pairfiles__/{team}/previous_pears.JSON", 'w') as f:
-        json.dump(previousPairWeeks, f)
+    with open(f"__pairfiles__/{team}/previous_pears.json", 'w') as f:
+        json.dump(previousPairWeeks, f, indent=2)
 
 def convertPeopleToGraph(people):
     peopleGraph = nx.Graph()
