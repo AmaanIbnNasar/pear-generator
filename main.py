@@ -112,7 +112,7 @@ def processTeam(team):
     # for neigh in peopleGraph.neighbors('Amaan Ibn-Nasar'):
     #     print(neigh, peopleGraph.edges['Amaan Ibn-Nasar', neigh]['weight'])
 
-    pairings = nx.max_weight_matching(peopleGraph)
+    pairings = nx.max_weight_matching(peopleGraph, maxcardinality=True)
 
     unpaired = set(people)
     for (p1, p2) in pairings:
