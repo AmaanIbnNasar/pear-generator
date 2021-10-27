@@ -1,74 +1,12 @@
-import networkx as nx, json, os, itertools
+import networkx as nx
+import json
+import os
+import itertools
 import inquirer
 
-def getPeople(team):
-    with open(f"__pairfiles__/{team}/people.txt") as f:
-        people = f.read().strip().split("\n")
-        people = [
-            person.strip()  # Strip leading/trailing spaces in a person's name
-            for person in people
-            if person.strip()  # Drop names that are accidental newlines
-        ]
-    return people
+from pairModule.teamNetwork import convertPeopleToGraph, convertPreviousPairsToGraphWeights, weightHomeWorkers
+from pairModule.fileHandling import getPeople, getPreviousPairs
 
-def getPreviousPairs(team):
-    with open(f"__pairfiles__/{team}/previous_pears.json") as f:
-        previousPairWeeks = json.load(f)
-    return previousPairWeeks
-
-def savePairings(team, pairings, unpaired):
-    with open(f"__pairfiles__/{team}/previous_pears.json") as f:
-        previousPairWeeks = json.load(f)
-    previousPairWeeks.insert(0, {
-        **{
-            p1: p2
-            for p1, p2 in pairings
-        },
-        **{
-            person: 0
-            for person in unpaired
-        }
-    })
-    with open(f"__pairfiles__/{team}/previous_pears.json", 'w') as f:
-        json.dump(previousPairWeeks, f, indent=2)
-
-def convertPeopleToGraph(people):
-    peopleGraph = nx.Graph()
-    peopleEdges = itertools.combinations(people, 2)
-    peopleGraph.add_edges_from(peopleEdges, weight=100)
-    return peopleGraph
-
-def convertPreviousPairsToGraphWeights(peopleGraph, previousPairWeeks):
-    unmatchedPeople = []  # can include repeats
-    # First apply the penalties for being matched previously
-    for i, previousPairWeek in enumerate(previousPairWeeks):
-        for p1, p2 in previousPairWeek.items():
-            if p1 in peopleGraph.nodes and p2 == 0:
-                unmatchedPeople.append(p1)
-                continue
-            if p1 not in peopleGraph.nodes or p2 not in peopleGraph.nodes:
-                continue
-            peopleGraph.edges[p1, p2]["weight"] *= 0.5 - 0.5**(i+1)
-    
-    # Then add the boost for being unpaired
-    for unmatchedPerson in unmatchedPeople:
-        for neighbor in peopleGraph.neighbors(unmatchedPerson):
-            peopleGraph.edges[unmatchedPerson, neighbor]["weight"] += 15
-
-
-def weightHomeWorkers(peopleGraph, people, peopleLocation):
-    for p1, p2 in itertools.combinations(people, 2):
-        if peopleLocation[p1] == peopleLocation[p2]:
-            peopleGraph.edges[p1, p2]["weight"] += 150
-
-
-def plotGraph(graph):
-    import matplotlib.pyplot as plt
-    pos = nx.drawing.spring_layout(graph)
-    nx.draw_networkx_nodes(graph, pos)
-    nx.draw_networkx_edges(graph, pos, width=[edge[2]/100 for edge in graph.edges.data("weight")])
-    nx.draw_networkx_labels(graph, pos)
-    plt.show()
 
 def main():
     team_answers = inquirer.prompt([
@@ -149,5 +87,5 @@ def processTeam(team):
         savePairings(team, pairings, unpaired)
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     main()

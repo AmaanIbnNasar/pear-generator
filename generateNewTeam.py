@@ -1,4 +1,6 @@
-import os, inquirer
+import os
+import inquirer
+
 
 def main():
     team_answers = inquirer.prompt([
@@ -9,9 +11,9 @@ def main():
     ])
 
     os.mkdir(f"./__pairfiles__/{team_answers['team']}")
-    with open (f"./__pairfiles__/{team_answers['team']}/people.txt", "w") as f:
+    with open(f"./__pairfiles__/{team_answers['team']}/people.txt", "w") as f:
         f.write("")
-    with open (f"./__pairfiles__/{team_answers['team']}/previous_pears.JSON", "w") as f:
+    with open(f"./__pairfiles__/{team_answers['team']}/previous_pears.JSON", "w") as f:
         f.write("[]")
 
 
