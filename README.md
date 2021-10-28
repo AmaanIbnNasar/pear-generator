@@ -8,7 +8,7 @@ Run `python3 main.py` to start
 
 ## Adding a team
 
-If you'd like to add a new team please run `python3 generateNewTeam.py`.
+If you'd like to add a new team please run `python3 main.py` and select `Generate a new team`.
 It will ask you for a team name and then:
 
 - Add a directory of the team name into `__pairfiles__`
