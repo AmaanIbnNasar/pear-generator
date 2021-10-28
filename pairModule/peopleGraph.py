@@ -41,6 +41,8 @@ def weightHomeWorkers(peopleGraph, people, peopleLocation):
 
 def printPairings(pairings, apples):
     for (p1, p2) in pairings:
+        apples.remove(p1)
+        apples.remove(p2)
         print(f":pear: {p1} :pear: {p2} :pear:")
     for person in apples:
         print(f":apple: {person} :apple:")

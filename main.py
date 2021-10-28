@@ -25,7 +25,7 @@ def main():
     elif main_answers['main'] == 'pair_all_teams':
         pairAllTeams()
     elif main_answers['main'] == 'big_message':
-        printAllPairings()
+        printAllPairings()  
     elif main_answers['main'] == 'generate_team':
         generateTeam()
     elif main_answers['main'] == 'archive_team':
