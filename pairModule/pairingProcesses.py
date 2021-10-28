@@ -71,11 +71,13 @@ def printAllPairings():
     for team in os.listdir('./__pairfiles__'):
         teamPairings = getMostRecentPairs(team)
         apples = getPeople(team)
-        applesToRemoveFromPairings = []
-        for p1, p2 in teamPairings.items():
-            if p2 == 0:
-                applesToRemoveFromPairings.append(p1)
-        for apple in applesToRemoveFromPairings:
-            teamPairings.pop(apple)
+        teamPairings = {
+            p1: p2
+            for p1, p2 in teamPairings.items()
+            if p2!=0
+        }
+        for (p1, p2) in teamPairings.items():
+            apples.remove(p1)
+            apples.remove(p2)
         printPairings(teamPairings.items(), apples)
 
