@@ -38,3 +38,13 @@ def weightHomeWorkers(peopleGraph, people, peopleLocation):
     for p1, p2 in itertools.combinations(people, 2):
         if peopleLocation[p1] == peopleLocation[p2]:
             peopleGraph.edges[p1, p2]["weight"] += 150
+
+def printPairings(pairings, apples):
+    for (p1, p2) in pairings:
+        apples.remove(p1)
+        apples.remove(p2)
+        print(f":pear: {p1} :pear: {p2} :pear:")
+    for person in apples:
+        print(f":apple: {person} :apple:")
+
+    print()

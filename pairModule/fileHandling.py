@@ -17,6 +17,13 @@ def getPreviousPairs(team):
         previousPairSets = json.load(f)
     return previousPairSets
 
+def getMostRecentPairs(team):
+    pairs = getPreviousPairs(team)
+    if len(pairs) != 0:
+        return pairs[0]
+    else:
+        return []
+
 
 def savePairings(team, pairings, unpaired):
     with open(f"__pairfiles__/{team}/previous_pears.json") as f:

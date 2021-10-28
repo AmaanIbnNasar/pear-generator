@@ -1,8 +1,8 @@
 import inquirer
 import os
 
-from pairModule.fileHandling import getPeople, getPreviousPairs, savePairings
-from pairModule.peopleGraph import doFullPairing
+from pairModule.fileHandling import getPeople, getPreviousPairs, savePairings, getMostRecentPairs
+from pairModule.peopleGraph import doFullPairing, printPairings
 
 
 def pairTeamAndAskWhich():
@@ -55,16 +55,7 @@ def pairTeam(team):
     pairings = doFullPairing(people, previousPairSets, peopleLocation)
 
     unpaired = set(people)
-    for (p1, p2) in pairings:
-        unpaired.remove(p1)
-        unpaired.remove(p2)
-        print(f":pear: {p1} :pear: {p2} :pear:")
-    for person in unpaired:
-        print(f":apple: {person} :apple:")
-    for person in exclusion_answers['excluded']:
-        print(f":apple: {person} :apple:")
-
-    print()
+    printPairings(pairings, [*unpaired, *exclusion_answers['excluded']])
 
     save_answers = inquirer.prompt([
         inquirer.Confirm(
@@ -75,3 +66,16 @@ def pairTeam(team):
     ])
     if save_answers['save']:
         savePairings(team, pairings, unpaired)
+
+def printAllPairings():
+    for team in os.listdir('./__pairfiles__'):
+        teamPairings = getMostRecentPairs(team)
+        apples = getPeople(team)
+        applesToRemoveFromPairings = []
+        for p1, p2 in teamPairings.items():
+            if p2 == 0:
+                applesToRemoveFromPairings.append(p1)
+        for apple in applesToRemoveFromPairings:
+            teamPairings.pop(apple)
+        printPairings(teamPairings.items(), apples)
+
