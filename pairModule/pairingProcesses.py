@@ -28,35 +28,35 @@ def pairTeam(team):
     people = getPeople(team)
     previousPairObjs = getPreviousPairObjs(team)
 
-    wfh_answers = inquirer.prompt([
+    wfh_answer = inquirer.prompt([
         inquirer.Checkbox(
             'homeworkers',
             message='Who is working from home?',
             choices=people
         )
-    ])
+    ])['homeworkers']
     peopleLocation = {
-        person: 'home' if person in wfh_answers['homeworkers'] else 'office'
+        person: 'home' if person in wfh_answer else 'office'
         for person in people
     }
 
-    exclusion_answers = inquirer.prompt([
+    exclusion_answer = inquirer.prompt([
         inquirer.Checkbox(
             'excluded',
             message='Who do you want to exclude from pairing?',
             choices=people
         )
-    ])
+    ])['excluded']
     people = [
         person
         for person in people
-        if person not in exclusion_answers['excluded']
+        if person not in exclusion_answer
     ]
 
     pairings, unpaired = doFullPairing(
         people, previousPairObjs, peopleLocation)
 
-    printPairings(pairings, [*unpaired, *exclusion_answers['excluded']])
+    printPairings(pairings, [*unpaired, *exclusion_answer])
 
     save_answers = inquirer.prompt([
         inquirer.Confirm(
@@ -69,7 +69,7 @@ def pairTeam(team):
         pairObjName = datetime.now().strftime("%c")
         print(f'This pairing will have name "{pairObjName}"')
         savePairings(team, pairObjName, pairings,
-                     exclusion_answers['excluded'], unpaired, peopleLocation)
+                     exclusion_answer, unpaired, peopleLocation)
 
 
 def printAllPairings():

@@ -5,7 +5,7 @@ from pairModule.pairingProcesses import pairAllTeams, pairTeamAndAskWhich, print
 
 
 def main():
-    main_answers = inquirer.prompt([
+    main_answer = inquirer.prompt([
         inquirer.List(
             'main',
             message="Which of the following would you like to do?",
@@ -18,18 +18,18 @@ def main():
                 # TODO: Generate pair file from slack message
             ]
         )
-    ])
+    ])["main"]
     print()
 
-    if main_answers['main'] == 'pair_team':
+    if main_answer == 'pair_team':
         pairTeamAndAskWhich()
-    elif main_answers['main'] == 'pair_all_teams':
+    elif main_answer == 'pair_all_teams':
         pairAllTeams()
-    elif main_answers['main'] == 'big_message':
+    elif main_answer == 'big_message':
         printAllPairings()
-    elif main_answers['main'] == 'generate_team':
+    elif main_answer == 'generate_team':
         generateTeam()
-    elif main_answers['main'] == 'archive_team':
+    elif main_answer == 'archive_team':
         archiveTeamAndAskWhich()
 
 
