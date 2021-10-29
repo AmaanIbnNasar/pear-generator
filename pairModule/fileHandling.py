@@ -27,8 +27,10 @@ def getMostRecentPairObj(team):
         return []
 
 
-def savePairings(team, name, pairings, excluded, unpaired, location):
+def savePairings(team, name, pairings, excluded, unpaired, location, *, overwrite_most_recent=False):
     previousPairObjs = getPreviousPairObjs(team)
+    if overwrite_most_recent:
+        del previousPairObjs[0]
     previousPairObjs.insert(0, {
         "name": name,
         "pairings": pairings,

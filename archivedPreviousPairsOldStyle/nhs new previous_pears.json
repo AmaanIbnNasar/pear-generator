@@ -1,0 +1,191 @@
+[
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Nathan Pettit": "Zahra Ahmed",
+      "Ben Wallace": "Mia Noonan",
+      "Anna Evans": "Joe Wilson",
+      "Amaan Ibn-Nasar": "Dami Makinde",
+      "Alice Tapper": "Maisie Blyth",
+      "Adam Carruthers": "Joel Helbling",
+      "Abbie Prescott": "Laura Thrift"
+    },
+    "location": {},
+    "excluded": [
+      "Scott Caldwell-Nichols",
+      "Roshaan Bajwa",
+      "Nathan Gregory",
+      "Mitul Dattani"
+    ],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Mitul Dattani": "Zahra Ahmed",
+      "Maisie Blyth": "Mia Noonan",
+      "Laura Thrift": "Nathan Pettit",
+      "Joe Wilson": "Roshaan Bajwa",
+      "Amaan Ibn-Nasar": "Anna Evans",
+      "Alice Tapper": "Ben Wallace",
+      "Adam Carruthers": "Scott Caldwell-Nichols",
+      "Abbie Prescott": "Joel Helbling",
+      "Dami Makinde": "Nathan Gregory"
+    },
+    "location": {},
+    "excluded": [],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Roshaan Bajwa": "Zahra Ahmed",
+      "Nathan Gregory": "Scott Caldwell-Nichols",
+      "Joel Helbling": "Mitul Dattani",
+      "Ben Wallace": "Laura Thrift",
+      "Dami Makinde": "Maisie Blyth",
+      "Anna Evans": "Nathan Pettit",
+      "Amaan Ibn-Nasar": "Mia Noonan",
+      "Adam Carruthers": "Alice Tapper",
+      "Abbie Prescott": "Joe Wilson"
+    },
+    "location": {},
+    "excluded": [],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Laura Thrift": "Zahra Ahmed",
+      "Joe Wilson": "Maisie Blyth",
+      "Dami Makinde": "Joel Helbling",
+      "Amaan Ibn-Nasar": "Ben Wallace",
+      "Alice Tapper": "Anna Evans",
+      "Adam Carruthers": "Roshaan Bajwa",
+      "Abbie Prescott": "Nathan Gregory"
+    },
+    "location": {},
+    "excluded": [
+      "Scott Caldwell-Nichols",
+      "Mia Noonan",
+      "Nathan Pettit",
+      "Mitul Dattani"
+    ],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Nathan Gregory": "Roshaan Bajwa",
+      "Mitul Dattani": "Nathan Pettit",
+      "Mia Noonan": "Zahra Ahmed",
+      "Ben Wallace": "Joel Helbling",
+      "Amaan Ibn-Nasar": "Anna Evans",
+      "Alice Tapper": "Joe Wilson",
+      "Adam Carruthers": "Maisie Blyth",
+      "Abbie Prescott": "Dami Makinde"
+    },
+    "location": {},
+    "excluded": ["Scott Caldwell-Nichols", "Laura Thrift"],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Maisie Blyth": "Zahra Ahmed",
+      "Joel Helbling": "Roshaan Bajwa",
+      "Joe Wilson": "Laura Thrift",
+      "Ben Wallace": "Dami Makinde",
+      "Anna Evans": "Scott Caldwell-Nichols",
+      "Amaan Ibn-Nasar": "Nathan Pettit",
+      "Alice Tapper": "Mia Noonan",
+      "Adam Carruthers": "Nathan Gregory",
+      "Abbie Prescott": "Mitul Dattani"
+    },
+    "location": {},
+    "excluded": [],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Nathan Pettit": "Roshaan Bajwa",
+      "Mitul Dattani": "Nathan Gregory",
+      "Mia Noonan": "Scott Caldwell-Nichols",
+      "Dami Makinde": "Zahra Ahmed",
+      "Anna Evans": "Maisie Blyth",
+      "Amaan Ibn-Nasar": "Laura Thrift",
+      "Adam Carruthers": "Joe Wilson",
+      "Abbie Prescott": "Ben Wallace"
+    },
+    "location": {},
+    "excluded": ["Alice Tapper", "Joel Helbling"],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Abbie Prescott": "Anna Evans",
+      "Adam Carruthers": "Nathan Pettit",
+      "Amaan Ibn-Nasar": "Joe Wilson",
+      "Ben Wallace": "Roshaan Bajwa",
+      "Joel Helbling": "Maisie Blyth",
+      "Mitul Dattani": "Scott Caldwell-Nichols",
+      "Nathan Gregory": "Zahra Ahmed",
+      "Mia Noonan": "Laura Thrift"
+    },
+    "location": {},
+    "excluded": ["Dami Makinde", "Alice Tapper"],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Abbie Prescott": "Amaan Ibn-Nasar",
+      "Adam Carruthers": "Ben Wallace",
+      "Alice Tapper": "Anna Evans",
+      "Joe Wilson": "Zahra Ahmed",
+      "Joel Helbling": "Scott Caldwell-Nichols",
+      "Laura Thrift": "Nathan Gregory",
+      "Maisie Blyth": "Mitul Dattani",
+      "Dami Makinde": "Nathan Pettit"
+    },
+    "location": {},
+    "excluded": ["Roshaan Bajwa", "Mia Noonan"],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Abbie Prescott": "Mia Noonan",
+      "Adam Carruthers": "Anna Evans",
+      "Zahra Ahmed": "Joel Helbling",
+      "Ben Wallace": "Joe Wilson",
+      "Laura Thrift": "Mitul Dattani",
+      "Dami Makinde": "Alice Tapper",
+      "Nathan Gregory": "Amaan Ibn-Nasar",
+      "Nathan Pettit": "Maisie Blyth",
+      "Scott Caldwell-Nichols": "Roshaan Bajwa"
+    },
+    "location": {},
+    "excluded": [],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
+      "Abbie Prescott": "Adam Carruthers",
+      "Alice Tapper": "Amaan Ibn-Nasar",
+      "Anna Evans": "Ben Wallace",
+      "Joe Wilson": "Joel Helbling",
+      "Laura Thrift": "Maisie Blyth",
+      "Mia Noonan": "Mitul Dattani",
+      "Nathan Gregory": "Nathan Pettit",
+      "Dami Makinde": "Roshaan Bajwa",
+      "Scott Caldwell-Nichols": "Zahra Ahmed"
+    },
+    "location": {},
+    "excluded": [],
+    "unpaired": []
+  }
+]
