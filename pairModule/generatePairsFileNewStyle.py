@@ -1,11 +1,11 @@
 import json
 
-from pairModule.fileHandling import getPreviousPairs
+from pairModule.fileHandling import getPreviousPairObjs
 
 
 def generatePairsFileNewStyle(team):
     # Load old pairs file
-    previousPairSetsOldStyle = getPreviousPairs(team)
+    previousPairSetsOldStyle = getPreviousPairObjs(team)
 
     # Convert format
     previousPairSetsNewStyle = [
@@ -16,6 +16,7 @@ def generatePairsFileNewStyle(team):
                 for p1, p2 in previousPairSet.items()
                 if p2 != 0
             },
+            "location": {},
             "excluded": [
                 p1
                 for p1, p2 in previousPairSet.items()

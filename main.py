@@ -15,6 +15,7 @@ def main():
                 ('Print the most recent pairing of all teams in a big combined message', 'big_message'),
                 ('Generate a new team', 'generate_team'),
                 ('Archive a current team', 'archive_team')
+                # TODO: Generate pair file from slack message
             ]
         )
     ])
@@ -25,7 +26,7 @@ def main():
     elif main_answers['main'] == 'pair_all_teams':
         pairAllTeams()
     elif main_answers['main'] == 'big_message':
-        printAllPairings()  
+        printAllPairings()
     elif main_answers['main'] == 'generate_team':
         generateTeam()
     elif main_answers['main'] == 'archive_team':

@@ -1,7 +1,8 @@
 import inquirer
 import os
+from datetime import datetime
 
-from pairModule.fileHandling import getPeople, getPreviousPairs, savePairings, getMostRecentPairs
+from pairModule.fileHandling import getPeople, getPreviousPairObjs, savePairings, getMostRecentPairObj
 from pairModule.peopleGraph import doFullPairing, printPairings
 
 
@@ -25,7 +26,7 @@ def pairAllTeams():
 
 def pairTeam(team):
     people = getPeople(team)
-    previousPairSets = getPreviousPairs(team)
+    previousPairObjs = getPreviousPairObjs(team)
 
     wfh_answers = inquirer.prompt([
         inquirer.Checkbox(
@@ -52,9 +53,9 @@ def pairTeam(team):
         if person not in exclusion_answers['excluded']
     ]
 
-    pairings = doFullPairing(people, previousPairSets, peopleLocation)
+    pairings, unpaired = doFullPairing(
+        people, previousPairObjs, peopleLocation)
 
-    unpaired = set(people)
     printPairings(pairings, [*unpaired, *exclusion_answers['excluded']])
 
     save_answers = inquirer.prompt([
@@ -65,18 +66,14 @@ def pairTeam(team):
         )
     ])
     if save_answers['save']:
-        savePairings(team, pairings, unpaired)
+        pairObjName = datetime.now().strftime("%c")
+        print(f'This pairing will have name "{pairObjName}"')
+        savePairings(team, pairObjName, pairings,
+                     exclusion_answers['excluded'], unpaired, peopleLocation)
+
 
 def printAllPairings():
     for team in os.listdir('./__pairfiles__'):
-        teamPairings = getMostRecentPairs(team)
-        apples = getPeople(team)
-        teamPairings = {
-            p1: p2
-            for p1, p2 in teamPairings.items()
-            if p2!=0
-        }
-        for (p1, p2) in teamPairings.items():
-            apples.remove(p1)
-            apples.remove(p2)
-        printPairings(teamPairings.items(), apples)
+        teamPairingObj = getMostRecentPairObj(team)
+        printPairings(teamPairingObj["pairings"], [
+                      *teamPairingObj["unpaired"], *teamPairingObj["excluded"]])
