@@ -1,7 +1,7 @@
 import inquirer
 
-from pairModule.fileProcesses import generateTeam
-from pairModule.pairingProcesses import pairAllTeams, pairTeamAndAskWhich, printAllPairings, archiveTeamAndAskWhich
+from pairModule.fileProcesses import generateTeam, archiveTeamAndAskWhich
+from pairModule.pairingProcesses import pairAllTeams, pairTeamAndAskWhich, printAllPairings
 
 
 def main():
