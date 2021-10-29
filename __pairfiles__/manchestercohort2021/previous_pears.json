@@ -9,10 +9,8 @@
       "Jack Mortiboy": "Jonathan Joseph",
       "Serena Abbott": "Peter Hailwood"
     },
-    "excluded": [
-      "Georgia Robinson",
-      "Cat Miller"
-    ],
+    "location": {},
+    "excluded": ["Georgia Robinson", "Cat Miller"],
     "unpaired": []
   }
 ]

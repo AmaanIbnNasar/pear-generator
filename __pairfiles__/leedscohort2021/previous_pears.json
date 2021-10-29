@@ -7,10 +7,8 @@
       "Rafael Mendes de Assis": "James Carter",
       "Karl Swatman": "Ben Lees"
     },
-    "excluded": [
-      "Yi Zang",
-      "Grey Milton"
-    ],
+    "location": {},
+    "excluded": ["Yi Zang", "Grey Milton"],
     "unpaired": []
   }
 ]
