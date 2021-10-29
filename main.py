@@ -1,7 +1,7 @@
 import inquirer
 
 from pairModule.fileProcesses import generateTeam
-from pairModule.pairingProcesses import pairAllTeams, pairTeamAndAskWhich, printAllPairings
+from pairModule.pairingProcesses import pairAllTeams, pairTeamAndAskWhich, printAllPairings, archiveTeamAndAskWhich
 
 
 def main():
@@ -29,7 +29,7 @@ def main():
     elif main_answers['main'] == 'generate_team':
         generateTeam()
     elif main_answers['main'] == 'archive_team':
-        print('Not yet implemented')
+        archiveTeamAndAskWhich()
 
 
 if __name__ == "__main__":

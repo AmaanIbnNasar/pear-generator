@@ -1,5 +1,6 @@
 import inquirer
 import os
+import shutil
 
 from pairModule.fileHandling import getPeople, getPreviousPairs, savePairings, getMostRecentPairs
 from pairModule.peopleGraph import doFullPairing, printPairings
@@ -81,3 +82,16 @@ def printAllPairings():
             apples.remove(p2)
         printPairings(teamPairings.items(), apples)
 
+def archiveTeamAndAskWhich():
+    team_answers = inquirer.prompt([
+        inquirer.List(
+            'team',
+            message="What team do you want to archive?",
+            choices=os.listdir('./__pairfiles__')
+        )
+    ])
+    archiveTeam(team_answers["team"])
+
+def archiveTeam(team):
+    shutil.move("./__pairfiles__/"+team, "./archivedTeams")
+    print(team + " has been archived")
