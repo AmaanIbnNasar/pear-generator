@@ -43,5 +43,5 @@ def savePairings(team, pairings, unpaired):
         json.dump(previousPairSets, f, indent=2)
 
 def archiveTeam(team):
-    shutil.move("./__pairfiles__/"+team, "./archivedTeams")
+    shutil.move("./__pairfiles__/"+team, "./archivedTeams/"+team)
     print(team + " has been archived")
