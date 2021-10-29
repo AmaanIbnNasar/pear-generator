@@ -80,4 +80,3 @@ def printAllPairings():
             apples.remove(p1)
             apples.remove(p2)
         printPairings(teamPairings.items(), apples)
-

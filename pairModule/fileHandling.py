@@ -1,4 +1,5 @@
 import json
+import shutil
 
 
 def getPeople(team):
@@ -40,3 +41,7 @@ def savePairings(team, pairings, unpaired):
     })
     with open(f"__pairfiles__/{team}/previous_pears.json", 'w') as f:
         json.dump(previousPairSets, f, indent=2)
+
+def archiveTeam(team):
+    shutil.move("./__pairfiles__/"+team, "./archivedTeams/"+team)
+    print(team + " has been archived")

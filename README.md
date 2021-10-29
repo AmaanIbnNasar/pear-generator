@@ -25,6 +25,12 @@ John Student
 The names on each line will constitute a unique ID for that person, and will be what is printed to the console when the pairing is printed.
 Therefore, make sure that the names are unique within the team and make sure that the names are written in a human readable form.
 
+## Managing Teams
+
+As teams become old you may want to archive them to avoid cluttering up the pair program interface without dangerously deleting the team.
+Teams can be easily archived from the main menu, simply select the relevant menu option and then choose which team to move.
+This will move the team from the `__pairfiles__` folder to the `archivedTeams` folder, to unarchive the team you can manually copy the team back to the `__pairfiles__` folder.
+
 ## How the algorithm works
 
 A team is represented as a fully connected graph.
