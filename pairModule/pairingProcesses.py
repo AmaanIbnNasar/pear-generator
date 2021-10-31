@@ -31,7 +31,7 @@ def pairTeam(team):
     lastPairing = previousPairObjs[0] if len(previousPairObjs) else None
 
     if lastPairing:
-        print(f'\nLast pairing name: "{lastPairing["name"]}"\n')
+        print(f'Last pairing name: "{lastPairing["name"]}"\n')
         printPairings(lastPairing["pairings"],
                       [*lastPairing["unpaired"], *lastPairing["excluded"]])
 
@@ -47,7 +47,7 @@ def pairTeam(team):
             "\nThe last pairing will be used to set defaults for the upcoming questions.\n")
     else:
         redo_answer = False
-        print("\nNo previous pairings found.\n")
+        print("No previous pairings found.\n")
 
     if lastPairing:
         preselected_wfh_people = []
