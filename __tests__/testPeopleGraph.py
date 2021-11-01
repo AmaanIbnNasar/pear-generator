@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from pairModule.peopleGraph import applyPreviousPairWeightDiscount, applySameLocationBoost, applyUnpairedWeightBoost, convertPeopleToGraph
+from pairModule.peopleGraph import applyPreviousPairWeightDiscount, applySameLocationBoost, applyUnpairedWeightBoost, convertPeopleToGraph, doFullPairing
 
 
 class TestConvertPeopleToGraph(TestCase):
@@ -122,4 +122,42 @@ class TestSameLocationBoost(TestCase):
             [(1, 2, 250), (1, 3, 100), (1, 4, 100),
              (2, 3, 100), (2, 4, 100), (3, 4, 250)],
             list(peopleGraph.edges.data("weight"))
+        )
+
+
+class TestDoFullPairing(TestCase):
+    def test_everyone_gets_a_go(self):
+        # Run 5 pairings with 5 people
+        # Each person should be excluded once under our scheme
+        previousPairObjs = []
+        for i in range(5):
+            pairings, unpaired = doFullPairing(
+                [1, 2, 3, 4, 5], previousPairObjs, {})
+            previousPairObjs.append({
+                "pairings": pairings,
+                "unpaired": unpaired
+            })
+        unpairedChoices = [
+            pairObj["unpaired"][0]
+            for pairObj in previousPairObjs
+        ]
+        self.assertTrue(all(i in unpairedChoices for i in [1, 2, 3, 4, 5]))
+
+    def test_homeworkers_get_paired_forever(self):
+        # Run a lot of pairings with 6 people, 2 homeworkers, rest office
+        # The homeworkers should be paired every single round under our scheme
+        previousPairObjs = []
+        for i in range(100):
+            pairings, unpaired = doFullPairing(
+                [1, 2, 3, 4, 5, 6], previousPairObjs, {1: 'office', 2: 'home', 3: 'home', 4: 'office', 5: 'office', 6: 'office'})
+            previousPairObjs.append({
+                "pairings": pairings,
+                "unpaired": unpaired
+            })
+        self.assertTrue(
+            all(
+                pairObj["pairings"].get(2, None) == 3 or
+                pairObj["pairings"].get(3, None) == 2
+                for pairObj in previousPairObjs
+            )
         )
