@@ -2,11 +2,15 @@ import networkx as nx
 import itertools
 
 
-def doFullPairing(people, previousPairSets, peopleLocation):
+def doFullPairing(people, previousPairObjs, peopleLocation):
     peopleGraph = convertPeopleToGraph(people)
-    convertPreviousPairsToGraphWeights(peopleGraph, previousPairSets)
-    weightHomeWorkers(peopleGraph, people, peopleLocation)
-    return nx.max_weight_matching(peopleGraph, maxcardinality=True)
+    applyPreviousPairWeightDiscount(peopleGraph, previousPairObjs)
+    applyUnpairedWeightBoost(peopleGraph, previousPairObjs)
+    applySameLocationBoost(peopleGraph, people, peopleLocation)
+    pairingsAsSet = nx.max_weight_matching(peopleGraph, maxcardinality=True)
+    pairings = convertPairingSetToDict(pairingsAsSet)
+    unpaired = calculateUnpaired(people, pairings)
+    return pairings, unpaired
 
 
 def convertPeopleToGraph(people):
@@ -16,33 +20,44 @@ def convertPeopleToGraph(people):
     return peopleGraph
 
 
-def convertPreviousPairsToGraphWeights(peopleGraph, previousPairSets):
-    unmatchedPeople = []  # can include repeats
-    # First apply the penalties for being matched previously
-    for i, previousPairSet in enumerate(previousPairSets):
-        for p1, p2 in previousPairSet.items():
-            if p1 in peopleGraph.nodes and p2 == 0:
-                unmatchedPeople.append(p1)
-                continue
+def applyPreviousPairWeightDiscount(peopleGraph, previousPairObjs):
+    for i, previousPairObj in enumerate(previousPairObjs):
+        for p1, p2 in previousPairObj["pairings"].items():
             if p1 not in peopleGraph.nodes or p2 not in peopleGraph.nodes:
                 continue
             peopleGraph.edges[p1, p2]["weight"] *= 0.5 - 0.5**(i+1)
 
-    # Then add the boost for being unpaired
-    for unmatchedPerson in unmatchedPeople:
-        for neighbor in peopleGraph.neighbors(unmatchedPerson):
-            peopleGraph.edges[unmatchedPerson, neighbor]["weight"] += 15
+
+def applyUnpairedWeightBoost(peopleGraph, previousPairObjs):
+    for previousPairObj in previousPairObjs:
+        for unpairedPerson in previousPairObj["unpaired"]:
+            for neighbor in peopleGraph.neighbors(unpairedPerson):
+                peopleGraph.edges[unpairedPerson, neighbor]["weight"] += 15
 
 
-def weightHomeWorkers(peopleGraph, people, peopleLocation):
+def applySameLocationBoost(peopleGraph, people, peopleLocation):
     for p1, p2 in itertools.combinations(people, 2):
         if peopleLocation[p1] == peopleLocation[p2]:
             peopleGraph.edges[p1, p2]["weight"] += 150
 
+
+def convertPairingSetToDict(pairingsAsSet):
+    return {
+        p1: p2
+        for p1, p2 in pairingsAsSet
+    }
+
+
+def calculateUnpaired(people, pairings):
+    unpaired = people.copy()
+    for p1, p2 in pairings.items():
+        unpaired.remove(p1)
+        unpaired.remove(p2)
+    return unpaired
+
+
 def printPairings(pairings, apples):
-    for (p1, p2) in pairings:
-        apples.remove(p1)
-        apples.remove(p2)
+    for p1, p2 in pairings.items():
         print(f":pear: {p1} :pear: {p2} :pear:")
     for person in apples:
         print(f":apple: {person} :apple:")

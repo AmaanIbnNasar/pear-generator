@@ -1,10 +1,14 @@
 [
   {
-    "Emily Evans": "Samuel Whitworth",
-    "Francessca Kissack": "Balli Asghar",
-    "Rafael Mendes de Assis": "James Carter",
-    "Karl Swatman": "Ben Lees",
-    "Yi Zang": 0,
-    "Grey Milton": 0
+    "name": "< Unnamed >",
+    "pairings": {
+      "Emily Evans": "Samuel Whitworth",
+      "Francessca Kissack": "Balli Asghar",
+      "Rafael Mendes de Assis": "James Carter",
+      "Karl Swatman": "Ben Lees"
+    },
+    "location": {},
+    "excluded": ["Yi Zang", "Grey Milton"],
+    "unpaired": []
   }
 ]

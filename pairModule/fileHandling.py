@@ -13,34 +13,34 @@ def getPeople(team):
     return people
 
 
-def getPreviousPairs(team):
+def getPreviousPairObjs(team):
     with open(f"__pairfiles__/{team}/previous_pears.json") as f:
-        previousPairSets = json.load(f)
-    return previousPairSets
+        previousPairObjs = json.load(f)
+    return previousPairObjs
 
-def getMostRecentPairs(team):
-    pairs = getPreviousPairs(team)
-    if len(pairs) != 0:
-        return pairs[0]
+
+def getMostRecentPairObj(team):
+    pairObjs = getPreviousPairObjs(team)
+    if len(pairObjs) != 0:
+        return pairObjs[0]
     else:
         return []
 
 
-def savePairings(team, pairings, unpaired):
-    with open(f"__pairfiles__/{team}/previous_pears.json") as f:
-        previousPairSets = json.load(f)
-    previousPairSets.insert(0, {
-        **{
-            p1: p2
-            for p1, p2 in pairings
-        },
-        **{
-            person: 0
-            for person in unpaired
-        }
+def savePairings(team, name, pairings, excluded, unpaired, location, *, overwrite_most_recent=False):
+    previousPairObjs = getPreviousPairObjs(team)
+    if overwrite_most_recent:
+        del previousPairObjs[0]
+    previousPairObjs.insert(0, {
+        "name": name,
+        "pairings": pairings,
+        "location": location,
+        "excluded": excluded,
+        "unpaired": unpaired
     })
     with open(f"__pairfiles__/{team}/previous_pears.json", 'w') as f:
-        json.dump(previousPairSets, f, indent=2)
+        json.dump(previousPairObjs, f, indent=2)
+
 
 def archiveTeam(team):
     shutil.move("./__pairfiles__/"+team, "./archivedTeams/"+team)
