@@ -6,7 +6,7 @@ def doFullPairing(people, previousPairObjs, peopleLocation):
     peopleGraph = convertPeopleToGraph(people)
     applyPreviousPairWeightDiscount(peopleGraph, previousPairObjs)
     applyUnpairedWeightBoost(peopleGraph, previousPairObjs)
-    applySameLocationBoost(peopleGraph, people, peopleLocation)
+    applySameLocationBoost(peopleGraph, peopleLocation)
     pairingsAsSet = nx.max_weight_matching(peopleGraph, maxcardinality=True)
     pairings = convertPairingSetToDict(pairingsAsSet)
     unpaired = calculateUnpaired(people, pairings)
@@ -35,9 +35,9 @@ def applyUnpairedWeightBoost(peopleGraph, previousPairObjs):
                 peopleGraph.edges[unpairedPerson, neighbor]["weight"] += 15
 
 
-def applySameLocationBoost(peopleGraph, people, peopleLocation):
-    for p1, p2 in itertools.combinations(people, 2):
-        if peopleLocation[p1] == peopleLocation[p2]:
+def applySameLocationBoost(peopleGraph, peopleLocation):
+    for p1, p2 in peopleGraph.edges():
+        if p1 in peopleLocation and p2 in peopleLocation and peopleLocation[p1] == peopleLocation[p2]:
             peopleGraph.edges[p1, p2]["weight"] += 150
 
 
