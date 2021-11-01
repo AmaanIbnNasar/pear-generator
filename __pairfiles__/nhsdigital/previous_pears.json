@@ -2,6 +2,23 @@
   {
     "name": "< Unnamed >",
     "pairings": {
+      "Maisie Blyth": "Mitul Dattani",
+      "Joe Wilson": "Mia Noonan",
+      "Ben Wallace": "Joel Helbling",
+      "Anna Evans": "Nathan Gregory",
+      "Amaan Ibn-Nasar": "Scott Caldwell-Nichols",
+      "Alice Tapper": "Nathan Pettit",
+      "Alex Evans": "Dami Makinde",
+      "Adam Carruthers": "Laura Thrift",
+      "Abbie Prescott": "Zara Ahmed"
+    },
+    "location": {},
+    "excluded": ["Roshaan Bajwa"],
+    "unpaired": []
+  },
+  {
+    "name": "< Unnamed >",
+    "pairings": {
       "Nathan Pettit": "Zahra Ahmed",
       "Ben Wallace": "Mia Noonan",
       "Anna Evans": "Joe Wilson",
